@@ -1,21 +1,24 @@
 import React from "react";
 
-export default function Habit({ habit, onToggle, onDelete }) {
-  const completedStyle = {
-    textDecoration: "line-through",
-  };
-
+function Habit({ habit, onToggle, onDelete }) {
   return (
     <li>
-      <span style={habit.completed ? completedStyle : {}}>{habit.name}</span>
-      
-      <button onClick={() => onToggle(habit.id)}>
-        {habit.completed ? "Mark as Not Completed" : "Mark as Completed"}
-      </button>
-      
-      {habit.completed && (
-        <button onClick={() => onDelete(habit.id)}>Delete</button>
-      )}
+      <input
+        type="checkbox"
+        checked={habit.completed}
+        onChange={() => onToggle(habit.id)}
+        aria-label="Toggle habit completion"
+      />
+      <span
+        style={{
+          textDecoration: habit.completed ? "line-through" : "none",
+        }}
+      >
+        {habit.name}
+      </span>
+      <button onClick={() => onDelete(habit.id)}>Delete</button>
     </li>
   );
 }
+
+export default Habit;

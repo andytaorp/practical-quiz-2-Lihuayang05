@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import AddHabitForm from "./AddHabitForm";
-import Habit from "./Habit"; 
+import HabitList from "./HabitList";
 
 function App() {
   const [habits, setHabits] = useState([]);
@@ -31,16 +31,11 @@ function App() {
     <div>
       <h1>Habit Tracker</h1>
       <AddHabitForm onAddHabit={handleAddHabit} />
-      <ul>
-        {habits.map((habit) => (
-          <Habit
-            key={habit.id}
-            habit={habit}
-            onToggle={handleToggleHabit} 
-            onDelete={handleDeleteHabit}
-          />
-        ))}
-      </ul>
+      <HabitList
+        habits={habits}
+        onToggle={handleToggleHabit}
+        onDelete={handleDeleteHabit}
+      />
     </div>
   );
 }
